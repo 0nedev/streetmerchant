@@ -139,10 +139,11 @@ export const Print = {
 
     axios.post(`${process.env.SSURL}/stock`, data).then(
       resp => {
-        console.log('Successfully posted to stalk stalker server');
+        console.log('Successfully posted to stock stalker server');
       },
       error => {
-        console.log('Failed to post to stalk stalker server');
+        console.log('Failed to post to stock stalker server');
+        console.log(error);
       }
     );
 
@@ -237,10 +238,11 @@ export const Print = {
 
     axios.post(`${process.env.SSURL}/stock`, data).then(
       resp => {
-        console.log('Successfully posted to stalk stalker server');
+        console.log('Successfully posted to stock stalker server');
       },
       error => {
-        console.log('Failed to post to stalk stalker server');
+        console.log('Failed to post to stock stalker server');
+        console.log(error);
       }
     );
 
