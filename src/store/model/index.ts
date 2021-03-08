@@ -126,6 +126,7 @@ import {ShopTo} from './shopto';
 import {SmythsToys} from './smythstoys';
 import {SmythsToysIE} from './smythstoys-ie';
 import {Spielegrotte} from './spielegrotte';
+import {StockTrackerCa} from './stocktracker-ca';
 import {Store} from './store';
 import {StormComputers} from './storm';
 import {Target} from './target';
@@ -273,6 +274,7 @@ export const storeList = new Map([
   [SmythsToys.name, SmythsToys],
   [SmythsToysIE.name, SmythsToysIE],
   [Spielegrotte.name, Spielegrotte],
+  [StockTrackerCa.name, StockTrackerCa],
   [StormComputers.name, StormComputers],
   [Target.name, Target],
   [TescoIE.name, TescoIE],

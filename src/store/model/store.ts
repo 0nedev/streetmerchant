@@ -191,6 +191,7 @@ export type LabelQuery = Element[] | Element | string[];
 
 export type Meta = {
   container?: string;
+  type?: 'innerHTML' | 'outerHTML' | 'textContent';
 };
 
 export type Labels = {

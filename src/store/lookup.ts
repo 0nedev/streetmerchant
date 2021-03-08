@@ -303,7 +303,7 @@ async function getMeta(
     const options: Selector = {
       requireVisible: false,
       selector: store.labels.meta?.container ?? 'body',
-      type: 'outerHTML',
+      type: store.labels.meta?.type ?? 'outerHTML',
     };
     return extractPageContents(page, options);
   }

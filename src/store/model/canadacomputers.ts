@@ -13,6 +13,7 @@ export const CanadaComputers: Store = {
     },
     meta: {
       container: '.stocklevel-pop',
+      type: 'outerHTML',
     },
   },
   links: [
