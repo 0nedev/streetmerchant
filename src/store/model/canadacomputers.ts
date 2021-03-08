@@ -11,6 +11,9 @@ export const CanadaComputers: Store = {
       container: '.h2-big > strong:nth-child(1)',
       euroFormat: false,
     },
+    meta: {
+      container: '.stocklevel-pop',
+    },
   },
   links: [
     {

@@ -2,6 +2,17 @@ import {Link, Store} from './store/model';
 import chalk from 'chalk';
 import {config} from './config';
 import winston from 'winston';
+import axios from 'axios';
+
+export type StockData = {
+  name: string;
+  store: string;
+  stock: number | null;
+  price?: number | null;
+  url: string;
+  meta?: string | null;
+  series: string;
+};
 
 const prettyJson = winston.format.printf(info => {
   const timestamp = new Date().toLocaleTimeString();
@@ -107,7 +118,32 @@ export const Print = {
 
     return `✖ ${buildProductString(link, store)} :: CLOUDFLARE, WAITING`;
   },
-  inStock(link: Link, store: Store, color?: boolean, sms?: boolean): string {
+  inStock(
+    link: Link,
+    store: Store,
+    color?: boolean,
+    sms?: boolean,
+    meta?: string | null
+  ): string {
+    const data: StockData = {
+      name: `${link.brand} ${link.series} ${link.model}`,
+      store: store.name,
+      stock: 1,
+      price: link.price,
+      url: link.url,
+      series: link.series,
+      meta: meta,
+    };
+
+    axios.post(`${process.env.SSURL}/stock`, data).then(
+      (resp) => {
+        console.log('Successfully posted to stalk stalker server');
+      },
+      (error) => {
+        console.log('Failed to post to stalk stalker server');
+      }
+    );
+
     const productString = `${buildProductString(link, store)} :: IN STOCK`;
 
     if (color) {
@@ -181,6 +217,24 @@ export const Print = {
     return `✖ ${buildProductString(link, store)} :: NO RESPONSE`;
   },
   outOfStock(link: Link, store: Store, color?: boolean): string {
+    const data: StockData = {
+      name: `${link.brand} ${link.series} ${link.model}`,
+      store: store.name,
+      stock: 0,
+      price: link.price,
+      url: link.url,
+      series: link.series,
+    };
+
+    axios.post(`${process.env.SSURL}/stock`, data).then(
+      (resp) => {
+        console.log('Successfully posted to stalk stalker server');
+      },
+      (error) => {
+        console.log('Failed to post to stalk stalker server');
+      }
+    );
+
     if (color) {
       return (
         '✖ ' +

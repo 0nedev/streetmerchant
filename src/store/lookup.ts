@@ -7,7 +7,12 @@ import {
 } from 'puppeteer';
 import {Link, Store, getStores} from './model';
 import {Print, logger} from '../logger';
-import {Selector, getPrice, pageIncludesLabels} from './includes-labels';
+import {
+  Selector,
+  getPrice,
+  pageIncludesLabels,
+  extractPageContents,
+} from './includes-labels';
 import {
   closePage,
   delay,
@@ -311,7 +316,17 @@ async function lookupCard(
   if (await lookupCardInStock(store, page, link)) {
     const givenUrl =
       link.cartUrl && config.store.autoAddToCart ? link.cartUrl : link.url;
-    logger.info(`${Print.inStock(link, store, true)}\n${givenUrl}`);
+    let meta;
+    const options: Selector = {
+      requireVisible: false,
+      selector: store.labels.meta?.container ?? 'body',
+      type: 'outerHTML',
+    };
+    if (store.labels.meta) meta = await extractPageContents(page, options);
+
+    logger.info(
+      `${Print.inStock(link, store, true, false, meta)}\n${givenUrl}`
+    );
 
     if (config.browser.open) {
       await (link.openCartAction === undefined

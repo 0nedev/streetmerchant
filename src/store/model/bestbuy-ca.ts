@@ -56,18 +56,11 @@ export const BestBuyCa: Store = {
         'https://www.bestbuy.ca/en-ca/product/nvidia-geforce-rtx-3060-ti-8gb-gddr6-video-card/15166285?intl=nosplash',
     },
     {
-      brand: 'zotac',
-      model: 'twin edge oc',
-      series: '3060ti',
-      url:
-        'https://www.bestbuy.ca/en-ca/product/zotac-geforce-rtx-3060-ti-twin-edge-oc-8gb-gddr6-video-card/15178452?intl=nosplash',
-    },
-    {
       brand: 'evga',
       model: 'ftw3 ultra',
       series: '3060ti',
       url:
-        'https://www.bestbuy.ca/en-ca/product/evga-geforce-rtx-3060-ti-ftw3-ultra-8gb-gddr6-video-card/15200164?intl=nosplash',
+        'https://www.bestbuy.ca/en-ca/product/evga-nvidia-geforce-rtx-3060-ti-ftw3-ultra-8gb-gddr6-video-card/15229237?intl=nosplash',
     },
     {
       brand: 'zotac',

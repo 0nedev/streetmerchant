@@ -189,10 +189,15 @@ export type Link = {
 
 export type LabelQuery = Element[] | Element | string[];
 
+export type Meta = {
+  container?: string;
+};
+
 export type Labels = {
   bannedSeller?: LabelQuery;
   captcha?: LabelQuery;
   container?: string;
+  meta?: Meta;
   inStock?: LabelQuery;
   outOfStock?: LabelQuery;
   maxPrice?: Pricing;
