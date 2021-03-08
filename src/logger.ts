@@ -5,13 +5,14 @@ import winston from 'winston';
 import axios from 'axios';
 
 export type StockData = {
+  brand: string;
+  series: string;
   name: string;
   store: string;
   stock: number | null;
   price?: number | null;
   url: string;
   meta?: string | null;
-  series: string;
 };
 
 const prettyJson = winston.format.printf(info => {
@@ -126,20 +127,21 @@ export const Print = {
     meta?: string | null
   ): string {
     const data: StockData = {
-      name: `${link.brand} ${link.series} ${link.model}`,
+      brand: link.brand,
+      series: link.series,
+      name: link.model,
       store: store.name,
       stock: 1,
       price: link.price,
       url: link.url,
-      series: link.series,
       meta: meta,
     };
 
     axios.post(`${process.env.SSURL}/stock`, data).then(
-      (resp) => {
+      resp => {
         console.log('Successfully posted to stalk stalker server');
       },
-      (error) => {
+      error => {
         console.log('Failed to post to stalk stalker server');
       }
     );
@@ -218,19 +220,20 @@ export const Print = {
   },
   outOfStock(link: Link, store: Store, color?: boolean): string {
     const data: StockData = {
-      name: `${link.brand} ${link.series} ${link.model}`,
+      brand: link.brand,
+      series: link.series,
+      name: link.model,
       store: store.name,
       stock: 0,
       price: link.price,
       url: link.url,
-      series: link.series,
     };
 
     axios.post(`${process.env.SSURL}/stock`, data).then(
-      (resp) => {
+      resp => {
         console.log('Successfully posted to stalk stalker server');
       },
-      (error) => {
+      error => {
         console.log('Failed to post to stalk stalker server');
       }
     );
