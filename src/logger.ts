@@ -218,7 +218,12 @@ export const Print = {
 
     return `✖ ${buildProductString(link, store)} :: NO RESPONSE`;
   },
-  outOfStock(link: Link, store: Store, color?: boolean): string {
+  outOfStock(
+    link: Link,
+    store: Store,
+    color?: boolean,
+    meta?: string | null
+  ): string {
     const data: StockData = {
       brand: link.brand,
       series: link.series,
@@ -227,6 +232,7 @@ export const Print = {
       stock: 0,
       price: link.price,
       url: link.url,
+      meta: meta,
     };
 
     axios.post(`${process.env.SSURL}/stock`, data).then(

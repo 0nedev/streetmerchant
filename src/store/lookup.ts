@@ -295,6 +295,21 @@ async function lookup(browser: Browser, store: Store) {
   /* eslint-enable no-await-in-loop */
 }
 
+async function getMeta(
+  store: Store,
+  page: Page
+): Promise<string | undefined | null> {
+  if (store.labels.meta) {
+    const options: Selector = {
+      requireVisible: false,
+      selector: store.labels.meta?.container ?? 'body',
+      type: 'outerHTML',
+    };
+    return extractPageContents(page, options);
+  }
+  return undefined;
+}
+
 async function lookupCard(
   browser: Browser,
   store: Store,
@@ -316,14 +331,8 @@ async function lookupCard(
   if (await lookupCardInStock(store, page, link)) {
     const givenUrl =
       link.cartUrl && config.store.autoAddToCart ? link.cartUrl : link.url;
-    let meta;
-    const options: Selector = {
-      requireVisible: false,
-      selector: store.labels.meta?.container ?? 'body',
-      type: 'outerHTML',
-    };
-    if (store.labels.meta) meta = await extractPageContents(page, options);
 
+    const meta = await getMeta(store, page);
     logger.info(
       `${Print.inStock(link, store, true, false, meta)}\n${givenUrl}`
     );
@@ -447,8 +456,9 @@ async function lookupCardInStock(store: Store, page: Page, link: Link) {
   }
 
   if (store.labels.outOfStock) {
+    const meta = await getMeta(store, page);
     if (await pageIncludesLabels(page, store.labels.outOfStock, baseOptions)) {
-      logger.info(Print.outOfStock(link, store, true));
+      logger.info(Print.outOfStock(link, store, true, meta));
       return false;
     }
   }
@@ -472,7 +482,8 @@ async function lookupCardInStock(store: Store, page: Page, link: Link) {
     };
 
     if (!(await pageIncludesLabels(page, link.labels.inStock, options))) {
-      logger.info(Print.outOfStock(link, store, true));
+      const meta = await getMeta(store, page);
+      logger.info(Print.outOfStock(link, store, true, meta));
       return false;
     }
   }
@@ -485,7 +496,8 @@ async function lookupCardInStock(store: Store, page: Page, link: Link) {
     };
 
     if (!(await pageIncludesLabels(page, store.labels.inStock, options))) {
-      logger.info(Print.outOfStock(link, store, true));
+      const meta = await getMeta(store, page);
+      logger.info(Print.outOfStock(link, store, true, meta));
       return false;
     }
   }
