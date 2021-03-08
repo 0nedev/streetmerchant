@@ -185,6 +185,7 @@ export type Link = {
   series: Series;
   screenshot?: string;
   url: string;
+  associateLink?: string;
 };
 
 export type LabelQuery = Element[] | Element | string[];

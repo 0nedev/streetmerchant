@@ -133,7 +133,7 @@ export const Print = {
       store: store.name,
       stock: 1,
       price: link.price,
-      url: link.url,
+      url: link.associateLink ? link.associateLink : link.url,
       meta: meta,
     };
 
@@ -232,7 +232,7 @@ export const Print = {
       store: store.name,
       stock: 0,
       price: link.price,
-      url: link.url,
+      url: link.associateLink ? link.associateLink : link.url,
       meta: meta,
     };
 
