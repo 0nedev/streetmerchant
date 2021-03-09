@@ -310,7 +310,7 @@ async function getMeta(
       selector: store.labels.meta?.container ?? 'body',
       type: store.labels.meta?.type ?? 'outerHTML',
     };
-    return extractPageContents(page, options);
+    return await extractPageContents(page, options);
   }
   return undefined;
 }
