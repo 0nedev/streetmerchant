@@ -195,6 +195,34 @@ export const BestBuyCa: Store = {
       url:
         'https://www.bestbuy.ca/en-ca/product/xbox-series-s-512gb-console-new-model-online-only/14964950',
     },
+    {
+      brand: 'amd',
+      model: '5600x',
+      series: 'ryzen5600',
+      url:
+        'https://www.bestbuy.ca/en-ca/product/amd-ryzen-5-5600x-hexa-core-3-7ghz-am4-desktop-processor/15331713',
+    },
+    {
+      brand: 'amd',
+      model: '5800x',
+      series: 'ryzen5800',
+      url:
+        'https://www.bestbuy.ca/en-ca/product/amd-ryzen-7-5800x-octa-core-3-8ghz-am4-desktop-processor/15331715',
+    },
+    {
+      brand: 'amd',
+      model: '5900x',
+      series: 'ryzen5900',
+      url:
+        'https://www.bestbuy.ca/en-ca/product/amd-ryzen-9-5900x-12-core-3-7ghz-am4-desktop-processors/15331714',
+    },
+    {
+      brand: 'amd',
+      model: '5950x',
+      series: 'ryzen5950',
+      url:
+        'https://www.bestbuy.ca/en-ca/product/amd-ryzen-9-5950x-16-core-3-4ghz-am4-desktop-processor/15331716',
+    },
   ],
   name: 'bestbuy-ca',
   waitUntil: 'domcontentloaded',
