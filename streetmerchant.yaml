@@ -1,0 +1,12 @@
+session_name: streetmerchant
+windows:
+  - window_name: Streetmerchant
+    layout: tiled
+    panes:
+      - STORES=canadacomputers REQ_CHUNK=5 npm run start:production
+      - STORES=newegg-ca REQ_CHUNK=5 npm run start:production
+      - STORES=amd-ca npm run start:production
+      - STORES=amazon-ca SHOW_ONLY_SERIES=3060,3060ti,3070,3080,3090,rx6800,rx6800xt,rx6900xt,ryzen5600,ryzen5800,ryzen5900,ryzen5950 npm run start:production
+      - STORES=walmart-ca npm run start:production
+      - STORES=bandh REQ_CHUNK=2 npm run start:production
+      - STORES=stocktracker-ca REQ_CHUNK=20 SHOW_ONLY_SERIES=3060,3060ti,3070,3080,3090,rx6800,rx6800xt,rx6900xt,ryzen5600,ryzen5800,ryzen5900,ryzen5950 npm run start:production
