@@ -44,11 +44,11 @@ COPY web/ web/
 COPY package.json package.json
 
 # These are conditional, we'll copy only if they exist, wildcard helps us do that
-COPY dotenv* dotenv
-COPY streetmerchant.yaml* streetmerchant.yaml
-COPY global.proxies* global.proxies
-COPY amd-ca.proxies* amd-ca.proxies
-COPY bestbuy-ca.proxies* bestbuy-ca.proxies
+COPY dotenv* /app/
+COPY streetmerchant.yaml* /app/
+COPY global.proxies* /app/
+COPY amd-ca.proxies* /app/
+COPY bestbuy-ca.proxies* /app/
 
 ENTRYPOINT ["/bin/sh", "-c", "tmuxp load streetmerchant.yaml"]
 # CMD "tmuxp load streetmerchant.yaml"
