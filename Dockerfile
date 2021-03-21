@@ -43,12 +43,12 @@ COPY --from=builder /build/build/ build/
 COPY web/ web/
 COPY package.json package.json
 
-COPY dotenv dotenv
-COPY streetmerchant.yaml streetmerchant.yaml
-COPY global.proxies global.proxies
-COPY amd-ca.proxies amd-ca.proxies
-COPY bestbuy-ca.proxies bestbuy-ca.proxies
-# COPY walmart-ca.proxies walmart-ca.proxies
+# These are conditional, we'll copy only if they exist, wildcard helps us do that
+COPY dotenv* dotenv
+COPY streetmerchant.yaml* streetmerchant.yaml
+COPY global.proxies* global.proxies
+COPY amd-ca.proxies* amd-ca.proxies
+COPY bestbuy-ca.proxies* bestbuy-ca.proxies
 
 ENTRYPOINT ["/bin/sh", "-c", "tmuxp load streetmerchant.yaml"]
 # CMD "tmuxp load streetmerchant.yaml"
