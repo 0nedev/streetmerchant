@@ -41,14 +41,14 @@ export const StockTrackerCa: Store = {
     },
     {
       brand: 'msi',
-      model: '3060',
-      series: 'ventus 3x',
+      model: 'ventus 3x',
+      series: '3060',
       url: 'https://stocktrack.ca/bb/availability.php?sku=15324508',
     },
     {
       brand: 'msi',
-      model: '3060',
-      series: 'ventus 2x oc',
+      model: 'ventus 2x oc',
+      series: '3060',
       url: 'https://stocktrack.ca/bb/availability.php?sku=15317226',
     },
     {
