@@ -40,6 +40,18 @@ export const StockTrackerCa: Store = {
       url: 'https://stocktrack.ca/bb/availability.php?sku=15309503',
     },
     {
+      brand: 'msi',
+      model: '3060',
+      series: 'ventus 3x',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15324508',
+    },
+    {
+      brand: 'msi',
+      model: '3060',
+      series: 'ventus 2x oc',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15317226',
+    },
+    {
       brand: 'evga',
       model: 'ftw3 ultra',
       series: '3060ti',
