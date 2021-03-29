@@ -5,8 +5,8 @@ import {
   HTTPResponse,
   ResponseForRequest,
 } from 'puppeteer';
-import {Link, Store} from './model';
-import {Print, logger} from '../logger';
+import { Link, Store } from './model';
+import { Print, logger } from '../logger';
 import {
   Selector,
   getPrice,
@@ -22,13 +22,13 @@ import {
   isStatusCodeInRange,
   noop,
 } from '../util';
-import {disableBlockerInPage, enableBlockerInPage} from '../adblocker';
-import {config} from '../config';
-import {fetchLinks} from './fetch-links';
-import {filterStoreLink} from './filter';
+import { disableBlockerInPage, enableBlockerInPage } from '../adblocker';
+import { config } from '../config';
+import { fetchLinks } from './fetch-links';
+import { filterStoreLink } from './filter';
 import open from 'open';
-import {processBackoffDelay} from './model/helpers/backoff';
-import {sendNotification} from '../notification';
+import { processBackoffDelay } from './model/helpers/backoff';
+import { sendNotification } from '../notification';
 import useProxy from '@doridian/puppeteer-page-proxy';
 
 const inStock: Record<string, boolean> = {};
@@ -51,8 +51,7 @@ function nextProxy(store: Store) {
   }
 
   logger.debug(
-    `ℹ [${store.name}] Next proxy index: ${store.currentProxyIndex} / Count: ${
-      store.proxyList.length
+    `ℹ [${store.name}] Next proxy index: ${store.currentProxyIndex} / Count: ${store.proxyList.length
     } (${store.proxyList[store.currentProxyIndex]})`
   );
 
@@ -239,14 +238,12 @@ async function processLink(
     if (store.currentProxyIndex !== undefined && store.proxyList) {
       const proxy = `${store.currentProxyIndex + 1}/${store.proxyList.length}`;
       logger.error(
-        `✖ [${proxy}] [${store.name}] ${link.brand} ${link.series} ${
-          link.model
+        `✖ [${proxy}] [${store.name}] ${link.brand} ${link.series} ${link.model
         } - ${(error as Error).message}`
       );
     } else {
       logger.error(
-        `✖ [${store.name}] ${link.brand} ${link.series} ${link.model} - ${
-          (error as Error).message
+        `✖ [${store.name}] ${link.brand} ${link.series} ${link.model} - ${(error as Error).message
         }`
       );
     }
@@ -362,7 +359,7 @@ async function lookupCard(
       logger.debug('ℹ saving screenshot');
 
       link.screenshot = `success-${Date.now()}.png`;
-      await page.screenshot({path: link.screenshot});
+      await page.screenshot({ path: link.screenshot });
     }
   }
 

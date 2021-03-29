@@ -23,7 +23,7 @@ export function noop() {
 export function chunkify<T>(arr: Array<T>, chunkSize: number): Array<Array<T>> {
   const allArrays = [];
   for (let i = 0; i < arr.length; i += chunkSize)
-    allArrays.push(arr.slice(i, i + chunkSize + 1));
+    allArrays.push(arr.slice(i, i + chunkSize));
   return allArrays;
 }
 

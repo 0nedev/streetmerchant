@@ -1,6 +1,6 @@
-import {Link, Store} from './store/model';
+import { Link, Store } from './store/model';
 import chalk from 'chalk';
-import {config} from './config';
+import { config } from './config';
 import winston from 'winston';
 import axios from 'axios';
 
@@ -45,7 +45,7 @@ export const Print = {
   backoff(
     link: Link,
     store: Store,
-    parameters: {delay: number; statusCode: number},
+    parameters: { delay: number; statusCode: number },
     color?: boolean
   ): string {
     if (color) {
@@ -59,9 +59,8 @@ export const Print = {
       );
     }
 
-    return `✖ ${buildProductString(link, store)} :: BACKOFF DELAY status=${
-      parameters.statusCode
-    } delay=${parameters.delay}`;
+    return `✖ ${buildProductString(link, store)} :: BACKOFF DELAY status=${parameters.statusCode
+      } delay=${parameters.delay}`;
   },
   badStatusCode(
     link: Link,
@@ -137,7 +136,15 @@ export const Print = {
       meta: meta,
     };
 
-    axios.post(`${process.env.SSURL}/stock`, data).then(
+    let url = `${process.env.SSURL}/stock`;
+    if (store.bulk) {
+      if (!meta) {
+        console.log('Meta is empty for a BULK request!');
+      }
+      url += "/bulk";
+    }
+
+    axios.post(url, data).then(
       resp => {
         console.log('Successfully posted to stock stalker server');
       },
@@ -186,9 +193,8 @@ export const Print = {
       );
     }
 
-    return `✖ ${buildProductString(link, store)} :: PRICE ${
-      link.price ?? ''
-    } EXCEEDS LIMIT ${maxPrice}`;
+    return `✖ ${buildProductString(link, store)} :: PRICE ${link.price ?? ''
+      } EXCEEDS LIMIT ${maxPrice}`;
   },
   message(
     message: string,

@@ -22,7 +22,7 @@ export const StockTrackerCa: Store = {
       url: 'https://stocktrack.ca/bb/availability.php?sku=15318940',
     },
     {
-      brand: 'asus',
+      brand: 'asus',  
       model: 'strix oc',
       series: '3060',
       url: 'https://stocktrack.ca/bb/availability.php?sku=15309514',
