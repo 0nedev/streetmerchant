@@ -15,7 +15,7 @@ COPY src/ src/
 RUN npm run compile
 RUN npm prune --production
 
-FROM node:15.11.0-alpine3.13
+FROM node:15.12.0-alpine3.13
 
 RUN apk add --no-cache chromium
 
@@ -37,7 +37,7 @@ ENV LANG=en_CA.UTF-8
 # USER appuser
 
 WORKDIR /app
- 
+
 COPY --from=builder /build/node_modules/ node_modules/
 COPY --from=builder /build/build/ build/
 COPY web/ web/
@@ -46,9 +46,7 @@ COPY package.json package.json
 # These are conditional, we'll copy only if they exist, wildcard helps us do that
 COPY dotenv* /app/
 COPY streetmerchant.yaml* /app/
-COPY global.proxies* /app/
-COPY amd-ca.proxies* /app/
-COPY bestbuy-ca.proxies* /app/
+COPY *.proxies /app/
 
 ENTRYPOINT ["/bin/sh", "-c", "tmuxp load streetmerchant.yaml"]
 # CMD "tmuxp load streetmerchant.yaml"

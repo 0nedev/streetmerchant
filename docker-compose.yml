@@ -1,10 +1,58 @@
-version: '3.0'
+version: '3.7'
+
 services:
-  streetmerchant:
-    image: ghcr.io/jef/streetmerchant:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: streetmerchant
-    env_file:
-      - dotenv
+  stocktracker-ca:
+    container_name: stocktracker-ca
+    image: streetmerchant
+    restart: on-failure
+    networks:
+      default:
+    entrypoint: ["/bin/sh", "-c", "STORES=stocktracker-ca REQ_CHUNK=5 SHOW_ONLY_SERIES=3060,3060ti,3070,3080,3090,rx6700xt,rx6800,rx6800xt,rx6900xt,ryzen5600,ryzen5800,ryzen5900,ryzen5950 npm run start:production"]
+    
+  canadacomputers-bulk:
+    container_name: canadacomputers-bulk
+    image: streetmerchant
+    restart: on-failure
+    networks:
+      default:
+    entrypoint: ["/bin/sh", "-c", " STORES=canadacomputers-bulk:90000 npm run start:production"]
+    
+  newegg-ca-bulk:
+    container_name: newegg-ca-bulk
+    image: streetmerchant
+    restart: on-failure
+    networks:
+      default:
+    entrypoint: ["/bin/sh", "-c", "STORES=newegg-ca-bulk:90000 npm run start:production"]
+
+  amazon-ca:
+    container_name: amazon-ca
+    image: streetmerchant
+    restart: on-failure
+    networks:
+      default:
+    entrypoint: ["/bin/sh", "-c", "STORES=amazon-ca SHOW_ONLY_SERIES=3060,3060ti,3070,3080,3090,rx6700xt,rx6800,rx6800xt,rx6900xt,ryzen5600,ryzen5800,ryzen5900,ryzen5950 npm run start:production"]
+    
+  amd-ca:
+    container_name: amd-ca
+    image: streetmerchant
+    restart: on-failure
+    networks:
+      default:
+    entrypoint: ["/bin/sh", "-c", "STORES=amd-ca:60000 npm run start:production"]
+    
+  walmart-ca:
+    container_name: walmart-ca
+    image: streetmerchant
+    restart: on-failure
+    networks:
+      default:
+    entrypoint: ["/bin/sh", "-c", "STORES=walmart-ca:30000 npm run start:production"]
+    
+  bandh:
+    container_name: bandh
+    image: streetmerchant
+    restart: on-failure
+    networks:
+      default:
+    entrypoint: ["/bin/sh", "-c", "STORES=bandh npm run start:production"]
