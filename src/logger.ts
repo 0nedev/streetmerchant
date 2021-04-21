@@ -1,8 +1,18 @@
-import { Link, Store } from './store/model';
+import {Link, Store} from './store/model';
 import chalk from 'chalk';
-import { config } from './config';
+import {config} from './config';
 import winston from 'winston';
 import axios from 'axios';
+import Agent from 'agentkeepalive';
+
+const keepAliveAgent = new Agent({
+  maxSockets: 100,
+  maxFreeSockets: 10,
+  timeout: 120000, // active socket keepalive for 60 seconds
+  freeSocketTimeout: 60000, // free socket keepalive for 30 seconds
+});
+
+const axiosInstance = axios.create({httpAgent: keepAliveAgent});
 
 export type StockData = {
   brand: string;
@@ -144,7 +154,7 @@ export const Print = {
       url += "/bulk";
     }
 
-    axios.post(url, data).then(
+    axiosInstance.post(url, data).then(
       resp => {
         console.log('Successfully posted to stock stalker server');
       },
@@ -194,7 +204,7 @@ export const Print = {
     }
 
     return `✖ ${buildProductString(link, store)} :: PRICE ${link.price ?? ''
-      } EXCEEDS LIMIT ${maxPrice}`;
+    } EXCEEDS LIMIT ${maxPrice}`;
   },
   message(
     message: string,
@@ -242,7 +252,7 @@ export const Print = {
       meta: meta,
     };
 
-    axios.post(`${process.env.SSURL}/stock`, data).then(
+    axiosInstance.post(`${process.env.SSURL}/stock`, data).then(
       resp => {
         console.log('Successfully posted to stock stalker server');
       },
