@@ -40,6 +40,7 @@ export const AmazonCa: Store = {
       model: 'gaming x trio',
       series: '3070',
       url: 'https://www.amazon.ca/dp/B08KWN2LZG',
+      associateLink: 'https://amzn.to/3kYMYCc',
     },
     {
       brand: 'msi',
@@ -48,6 +49,7 @@ export const AmazonCa: Store = {
       model: 'ventus 3x oc',
       series: '3070',
       url: 'https://www.amazon.ca/dp/B08KWLMZV4',
+      associateLink: 'https://amzn.to/38mDr2s',
     },
     {
       brand: 'evga',
@@ -56,6 +58,7 @@ export const AmazonCa: Store = {
       model: 'xc3',
       series: '3070',
       url: 'https://www.amazon.ca/dp/B08LW46GH2',
+      associateLink: 'https://amzn.to/3kUIfBp',
     },
     {
       brand: 'evga',
@@ -64,6 +67,7 @@ export const AmazonCa: Store = {
       model: 'xc3 ultra',
       series: '3070',
       url: 'https://www.amazon.ca/dp/B08L8L71SM',
+      associateLink: 'https://amzn.to/2PKz2jA',
     },
     {
       brand: 'evga',
@@ -72,6 +76,7 @@ export const AmazonCa: Store = {
       model: 'ftw3 ultra',
       series: '3070',
       url: 'https://www.amazon.ca/dp/B08L8L9TCZ',
+      associateLink: 'https://amzn.to/3chxSDC',
     },
     {
       brand: 'msi',
@@ -80,6 +85,7 @@ export const AmazonCa: Store = {
       model: 'gaming x trio',
       series: '3080',
       url: 'https://www.amazon.ca/dp/B08HR7SV3M',
+      associateLink: 'https://amzn.to/3buN2Xb',
     },
     {
       brand: 'msi',
@@ -88,6 +94,7 @@ export const AmazonCa: Store = {
       model: 'ventus 3x oc',
       series: '3080',
       url: 'https://www.amazon.ca/dp/B08HR5SXPS',
+      associateLink: 'https://amzn.to/2OhF2zL',
     },
     {
       brand: 'evga',
@@ -96,6 +103,7 @@ export const AmazonCa: Store = {
       model: 'ftw3',
       series: '3080',
       url: 'https://www.amazon.ca/dp/B08HR3DPGW',
+      associateLink: 'https://amzn.to/30qkFCY',
     },
     {
       brand: 'evga',
@@ -104,6 +112,7 @@ export const AmazonCa: Store = {
       model: 'ftw3 ultra',
       series: '3080',
       url: 'https://www.amazon.ca/dp/B08HR3Y5GQ',
+      associateLink: 'https://amzn.to/38m3C9C',
     },
     {
       brand: 'evga',
@@ -112,6 +121,7 @@ export const AmazonCa: Store = {
       model: 'xc3 ultra',
       series: '3080',
       url: 'https://www.amazon.ca/dp/B08HR55YB5',
+      associateLink: 'https://amzn.to/3v5VpQD',
     },
     {
       brand: 'evga',
@@ -120,6 +130,7 @@ export const AmazonCa: Store = {
       model: 'xc3',
       series: '3080',
       url: 'https://www.amazon.ca/dp/B08HR4RJ3Q',
+      associateLink: 'https://amzn.to/3ekMe8Z',
     },
     {
       brand: 'evga',
@@ -128,6 +139,7 @@ export const AmazonCa: Store = {
       model: 'xc3 black',
       series: '3080',
       url: 'https://www.amazon.ca/dp/B08HR6FMF3',
+      associateLink: 'https://amzn.to/2Ohqpwi',
     },
     {
       brand: 'gigabyte',
@@ -136,6 +148,7 @@ export const AmazonCa: Store = {
       model: 'gaming oc',
       series: '3080',
       url: 'https://www.amazon.ca/dp/B08HJTH61J',
+      associateLink: 'https://amzn.to/3v7DBEz',
     },
     {
       brand: 'gigabyte',
@@ -144,6 +157,7 @@ export const AmazonCa: Store = {
       model: 'eagle oc',
       series: '3080',
       url: 'https://www.amazon.ca/dp/B08HJS2JLJ',
+      associateLink: 'https://amzn.to/3ehYWW5',
     },
     {
       brand: 'asus',
@@ -152,6 +166,7 @@ export const AmazonCa: Store = {
       model: 'tuf',
       series: '3080',
       url: 'https://www.amazon.ca/dp/B08HHDP9DW',
+      associateLink: 'https://amzn.to/38E11Ir',
     },
     {
       brand: 'asus',
@@ -160,6 +175,7 @@ export const AmazonCa: Store = {
       model: 'tuf oc',
       series: '3080',
       url: 'https://www.amazon.ca/dp/B08HH5WF97',
+      associateLink: 'https://amzn.to/3buOHfo',
     },
     {
       brand: 'zotac',
@@ -168,6 +184,7 @@ export const AmazonCa: Store = {
       model: 'trinity',
       series: '3080',
       url: 'https://www.amazon.ca/dp/B08HJNKT3P',
+      associateLink: 'https://amzn.to/30p02ah',
     },
     {
       brand: 'zotac',
@@ -176,6 +193,7 @@ export const AmazonCa: Store = {
       model: 'trinity',
       series: '3090',
       url: 'https://www.amazon.ca/dp/B08HJQ182D',
+      associateLink: 'https://amzn.to/3rtdhTr',
     },
     {
       brand: 'msi',
@@ -184,6 +202,7 @@ export const AmazonCa: Store = {
       model: 'ventus 3x oc',
       series: '3090',
       url: 'https://www.amazon.ca/dp/B08HR9D2JS',
+      associateLink: 'https://amzn.to/38oIyPT',
     },
     {
       brand: 'gigabyte',
@@ -192,6 +211,7 @@ export const AmazonCa: Store = {
       model: 'gaming oc',
       series: '3090',
       url: 'https://www.amazon.ca/dp/B08HJRF2CN',
+      associateLink: 'https://amzn.to/38jUHoY',
     },
     {
       brand: 'gigabyte',
@@ -200,6 +220,7 @@ export const AmazonCa: Store = {
       model: 'eagle oc',
       series: '3090',
       url: 'https://www.amazon.ca/dp/B08HJPDJTY',
+      associateLink: 'https://amzn.to/3t2hCNK',
     },
     {
       brand: 'asus',
@@ -208,6 +229,7 @@ export const AmazonCa: Store = {
       model: 'tuf',
       series: '3090',
       url: 'https://www.amazon.ca/dp/B08HJGNJ81',
+      associateLink: 'https://amzn.to/3qoCEEB',
     },
     {
       brand: 'asus',
@@ -216,6 +238,7 @@ export const AmazonCa: Store = {
       model: 'tuf oc',
       series: '3090',
       url: 'https://www.amazon.ca/dp/B08HJLLF7G',
+      associateLink: 'https://amzn.to/3btTbml',
     },
     {
       brand: 'amd',
@@ -224,6 +247,7 @@ export const AmazonCa: Store = {
       model: '5600x',
       series: 'ryzen5600',
       url: 'https://www.amazon.ca/dp/B08166SLDF',
+      associateLink: 'https://amzn.to/3t1NBgZ',
     },
     {
       brand: 'amd',
@@ -232,6 +256,7 @@ export const AmazonCa: Store = {
       model: '5800x',
       series: 'ryzen5800',
       url: 'https://www.amazon.ca/dp/B0815XFSGK',
+      associateLink: 'https://amzn.to/38E2hv9',
     },
     {
       brand: 'amd',
@@ -240,6 +265,7 @@ export const AmazonCa: Store = {
       model: '5900x',
       series: 'ryzen5900',
       url: 'https://www.amazon.ca/dp/B08164VTWH',
+      associateLink: 'https://amzn.to/3kXQmNF',
     },
     {
       brand: 'amd',
@@ -248,6 +274,7 @@ export const AmazonCa: Store = {
       model: '5950x',
       series: 'ryzen5950',
       url: 'https://www.amazon.ca/dp/B0815Y8J9N',
+      associateLink: 'https://amzn.to/3bxjCrv',
     },
     {
       brand: 'sony',
@@ -256,6 +283,7 @@ export const AmazonCa: Store = {
       model: 'ps5 console',
       series: 'sonyps5c',
       url: 'https://www.amazon.ca/dp/B08GSC5D9G',
+      associateLink: 'https://amzn.to/3l8TWoh',
     },
     {
       brand: 'sony',
@@ -264,6 +292,7 @@ export const AmazonCa: Store = {
       model: 'ps5 digital',
       series: 'sonyps5de',
       url: 'https://www.amazon.ca/dp/B08GS1N24H',
+      associateLink: 'https://amzn.to/3emDa3h',
     },
     {
       brand: 'microsoft',
@@ -278,6 +307,7 @@ export const AmazonCa: Store = {
       model: 'xbox series x',
       series: 'xboxsx',
       url: 'https://www.amazon.ca/dp/B08H75RTZ8',
+      associateLink: 'https://amzn.to/38lrhHf',
     },
     {
       brand: 'microsoft',
@@ -292,6 +322,7 @@ export const AmazonCa: Store = {
       model: 'xbox series s',
       series: 'xboxss',
       url: 'https://www.amazon.ca/dp/B08G9J44ZN',
+      associateLink: 'https://amzn.to/2MWEVsK',
     },
     {
       brand: 'xfx',
@@ -300,6 +331,7 @@ export const AmazonCa: Store = {
       model: 'merc',
       series: 'rx6800xt',
       url: 'https://www.amazon.ca/dp/B08NX14LV1',
+      associateLink: 'https://amzn.to/3qxPmk9',
     },
     {
       brand: 'sapphire',
@@ -308,6 +340,7 @@ export const AmazonCa: Store = {
       model: 'pulse',
       series: 'rx6800xt',
       url: 'https://www.amazon.ca/dp/B08PQ585CX',
+      associateLink: 'https://amzn.to/2OACoVO',
     },
   ],
   name: 'amazon-ca',

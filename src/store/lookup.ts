@@ -6,10 +6,16 @@ import {
   HTTPResponse,
   ResponseForRequest,
 } from 'puppeteer';
-import {Link, Store, getStores} from './model';
+import {Link, Store} from './model';
 import {Print, logger} from '../logger';
-import {Selector, getPrice, pageIncludesLabels} from './includes-labels';
 import {
+  Selector,
+  getPrice,
+  pageIncludesLabels,
+  extractPageContents,
+} from './includes-labels';
+import {
+  chunkify,
   closePage,
   delay,
   getRandomUserAgent,
@@ -145,6 +151,124 @@ async function handleAdBlock(request: HTTPRequest, adBlockRequestHandler: any) {
   });
 }
 
+async function processLink(
+  browser: Browser,
+  store: Store,
+  link: Link
+): Promise<void> {
+  if (!filterStoreLink(link)) {
+    return;
+  }
+
+  if (config.page.inStockWaitTime && inStock[link.url]) {
+    logger.info(Print.inStockWaiting(link, store, true));
+    return;
+  }
+
+  const proxy = nextProxy(store);
+
+  const useAdBlock = !config.browser.lowBandwidth && !store.disableAdBlocker;
+  const customContext = config.browser.isIncognito;
+
+  const context = customContext
+    ? await browser.createIncognitoBrowserContext()
+    : browser.defaultBrowserContext();
+  const page = await context.newPage();
+  await page.setRequestInterception(true);
+
+  page.setDefaultNavigationTimeout(config.page.timeout);
+  await page.setUserAgent(await getRandomUserAgent());
+
+  let adBlockRequestHandler: any;
+  let pageProxy;
+  if (useAdBlock) {
+    const onProxyFunc = (event: keyof PageEventObject, handler: any) => {
+      if (event !== 'request') {
+        page.on(event, handler);
+        return;
+      }
+
+      adBlockRequestHandler = handler;
+    };
+    pageProxy = new Proxy(page, {
+      get(target, prop, receiver) {
+        if (prop === 'on') {
+          return onProxyFunc;
+        }
+
+        // Give dummy setRequestInterception to avoid AdBlock from messing with it
+        if (prop === 'setRequestInterception') {
+          return noop;
+        }
+
+        return Reflect.get(target, prop, receiver);
+      },
+    });
+    await enableBlockerInPage(pageProxy);
+  }
+
+  await page.setRequestInterception(true);
+  page.on('request', async request => {
+    if (await handleLowBandwidth(request)) {
+      return;
+    }
+
+    if (await handleAdBlock(request, adBlockRequestHandler)) {
+      return;
+    }
+
+    if (await handleProxy(request, proxy)) {
+      return;
+    }
+
+    try {
+      await request.continue();
+    } catch {
+      logger.debug('Failed to continue request.');
+    }
+  });
+
+  if (store.captchaDeterrent) {
+    await runCaptchaDeterrent(browser, store, page);
+  }
+
+  let statusCode = 0;
+  try {
+    statusCode = await lookupIem(browser, store, page, link);
+  } catch (error: unknown) {
+    if (store.currentProxyIndex !== undefined && store.proxyList) {
+      const proxy = `${store.currentProxyIndex + 1}/${store.proxyList.length}`;
+      logger.error(
+        `✖ [${proxy}] [${store.name}] ${link.brand} ${link.series} ${
+          link.model
+        } - ${(error as Error).message}`
+      );
+    } else {
+      logger.error(
+        `✖ [${store.name}] ${link.brand} ${link.series} ${link.model} - ${
+          (error as Error).message
+        }`
+      );
+    }
+
+    const client = await page.target().createCDPSession();
+    await client.send('Network.clearBrowserCookies');
+  }
+
+  if (pageProxy) {
+    await disableBlockerInPage(pageProxy);
+  }
+
+  // Must apply backoff before closing the page, e.g. if CloudFlare is
+  // used to detect bot traffic, it introduces a 5 second page delay
+  // before redirecting to the next page
+  await processBackoffDelay(store, link, statusCode);
+  await closePage(page);
+  if (customContext) {
+    await context.close();
+  }
+}
+
 /**
  * Responsible for looking up information about a each product within
  * a `Store`. It's important that we ignore `no-await-in-loop` here
@@ -154,10 +278,6 @@ async function handleAdBlock(request: HTTPRequest, adBlockRequestHandler: any) {
  * @param store Vendor of items.
  */
 async function lookup(browser: Browser, store: Store) {
-  if (!getStores().has(store.name)) {
-    return;
-  }
-
   if (store.linksBuilder) {
     const lastRunTime = linkBuilderLastRunTimes[store.name] ?? -1;
     const ttl = store.linksBuilder.ttl ?? Number.MAX_SAFE_INTEGER;
@@ -172,124 +292,28 @@ async function lookup(browser: Browser, store: Store) {
     }
   }
 
-  /* eslint-disable no-await-in-loop */
-  for (const link of store.links) {
-    if (!filterStoreLink(link)) {
-      continue;
-    }
-
-    if (config.page.inStockWaitTime && inStock[link.url]) {
-      logger.info(Print.inStockWaiting(link, store, true));
-      continue;
-    }
-
-    const proxy = nextProxy(store);
-
-    const useAdBlock = !config.browser.lowBandwidth && !store.disableAdBlocker;
-    const customContext = config.browser.isIncognito;
-
-    const context = customContext
-      ? await browser.createIncognitoBrowserContext()
-      : browser.defaultBrowserContext();
-    const page = await context.newPage();
-    await page.setRequestInterception(true);
-
-    page.setDefaultNavigationTimeout(config.page.timeout);
-    await page.setUserAgent(await getRandomUserAgent());
-
-    let adBlockRequestHandler: any;
-    let pageProxy;
-    if (useAdBlock) {
-      const onProxyFunc = (event: keyof PageEventObject, handler: any) => {
-        if (event !== 'request') {
-          page.on(event, handler);
-          return;
-        }
-
-        adBlockRequestHandler = handler;
-      };
-
-      pageProxy = new Proxy(page, {
-        get(target, prop, receiver) {
-          if (prop === 'on') {
-            return onProxyFunc;
-          }
-
-          // Give dummy setRequestInterception to avoid AdBlock from messing with it
-          if (prop === 'setRequestInterception') {
-            return noop;
-          }
-
-          return Reflect.get(target, prop, receiver);
-        },
-      });
-      await enableBlockerInPage(pageProxy);
-    }
-
-    await page.setRequestInterception(true);
-    page.on('request', async request => {
-      if (await handleLowBandwidth(request)) {
-        return;
-      }
-
-      if (await handleAdBlock(request, adBlockRequestHandler)) {
-        return;
-      }
-
-      if (await handleProxy(request, proxy)) {
-        return;
-      }
-
-      try {
-        await request.continue();
-      } catch {
-        logger.debug('Failed to continue request.');
-      }
-    });
-
-    if (store.captchaDeterrent) {
-      await runCaptchaDeterrent(browser, store, page);
-    }
-
-    let statusCode = 0;
-
-    try {
-      statusCode = await lookupIem(browser, store, page, link);
-    } catch (error: unknown) {
-      if (store.currentProxyIndex !== undefined && store.proxyList) {
-        const proxy = `${store.currentProxyIndex + 1}/${
-          store.proxyList.length
-        }`;
-        logger.error(
-          `✖ [${proxy}] [${store.name}] ${link.brand} ${link.series} ${
-            link.model
-          } - ${(error as Error).message}`
-        );
-      } else {
-        logger.error(
-          `✖ [${store.name}] ${link.brand} ${link.series} ${link.model} - ${
-            (error as Error).message
-          }`
-        );
-      }
-      const client = await page.target().createCDPSession();
-      await client.send('Network.clearBrowserCookies');
-    }
-
-    if (pageProxy) {
-      await disableBlockerInPage(pageProxy);
-    }
-
-    // Must apply backoff before closing the page, e.g. if CloudFlare is
-    // used to detect bot traffic, it introduces a 5 second page delay
-    // before redirecting to the next page
-    await processBackoffDelay(store, link, statusCode);
-    await closePage(page);
-    if (customContext) {
-      await context.close();
-    }
+  const envChunk = process.env.REQ_CHUNK;
+  const chunkSize = envChunk ? Number(envChunk) : 1;
+  for (const bufLinks of chunkify(store.links, chunkSize)) {
+    await Promise.all(
+      bufLinks.map((link: Link) => processLink(browser, store, link))
+    );
   }
-  /* eslint-enable no-await-in-loop */
+}
+
+async function getMeta(
+  store: Store,
+  page: Page
+): Promise<string | undefined | null> {
+  if (store.labels.meta) {
+    const options: Selector = {
+      requireVisible: false,
+      selector: store.labels.meta?.container ?? 'body',
+      type: store.labels.meta?.type ?? 'outerHTML',
+    };
+    return await extractPageContents(page, options);
+  }
+  return undefined;
 }
 
 async function lookupIem(
@@ -313,7 +337,11 @@ async function lookupIem(
   if (await isItemInStock(store, page, link)) {
     const givenUrl =
       link.cartUrl && config.store.autoAddToCart ? link.cartUrl : link.url;
-    logger.info(`${Print.inStock(link, store, true)}\n${givenUrl}`);
+
+    const meta = await getMeta(store, page);
+    logger.info(
+      `${Print.inStock(link, store, true, false, meta)}\n${givenUrl}`
+    );
 
     if (config.browser.open) {
       await (link.openCartAction === undefined
@@ -450,8 +478,9 @@ async function isItemInStock(
   }
 
   if (store.labels.outOfStock) {
+    const meta = await getMeta(store, page);
     if (await pageIncludesLabels(page, store.labels.outOfStock, baseOptions)) {
-      logger.info(Print.outOfStock(link, store, true));
+      logger.info(Print.outOfStock(link, store, true, meta));
       return false;
     }
   }
@@ -464,7 +493,8 @@ async function isItemInStock(
     };
 
     if (!(await pageIncludesLabels(page, link.labels.inStock, options))) {
-      logger.info(Print.outOfStock(link, store, true));
+      const meta = await getMeta(store, page);
+      logger.info(Print.outOfStock(link, store, true, meta));
       return false;
     }
   }
@@ -477,7 +507,8 @@ async function isItemInStock(
     };
 
     if (!(await pageIncludesLabels(page, store.labels.inStock, options))) {
-      logger.info(Print.outOfStock(link, store, true));
+      const meta = await getMeta(store, page);
+      logger.info(Print.outOfStock(link, store, true, meta));
       return false;
     }
   }

@@ -2,6 +2,28 @@ import {Link, Store} from './store/model';
 import chalk from 'chalk';
 import {config} from './config';
 import winston from 'winston';
+import axios from 'axios';
+import Agent from 'agentkeepalive';
+
+const keepAliveAgent = new Agent({
+  maxSockets: 100,
+  maxFreeSockets: 10,
+  timeout: 120000, // active socket keepalive for 60 seconds
+  freeSocketTimeout: 60000, // free socket keepalive for 30 seconds
+});
+
+const axiosInstance = axios.create({httpAgent: keepAliveAgent});
+
+export type StockData = {
+  brand: string;
+  series: string;
+  name: string;
+  store: string;
+  stock: number | null;
+  price?: number | null;
+  url: string;
+  meta?: string | null;
+};
 
 const prettyJson = winston.format.printf(info => {
   const timestamp = new Date().toLocaleTimeString();
@@ -107,7 +129,42 @@ export const Print = {
 
     return `✖ ${buildProductString(link, store)} :: CLOUDFLARE, WAITING`;
   },
-  inStock(link: Link, store: Store, color?: boolean, sms?: boolean): string {
+  inStock(
+    link: Link,
+    store: Store,
+    color?: boolean,
+    sms?: boolean,
+    meta?: string | null
+  ): string {
+    const data: StockData = {
+      brand: link.brand,
+      series: link.series,
+      name: link.model,
+      store: store.name,
+      stock: 1,
+      price: link.price,
+      url: link.associateLink ? link.associateLink : link.url,
+      meta: meta,
+    };
+
+    let url = `${process.env.SSURL}/stock`;
+    if (store.bulk) {
+      if (!meta) {
+        console.log('Meta is empty for a BULK request!');
+      }
+      url += '/bulk';
+    }
+
+    axiosInstance.post(url, data).then(
+      () => {
+        console.log('Successfully posted to stock stalker server');
+      },
+      error => {
+        console.log('Failed to post to stock stalker server');
+        console.log(error);
+      }
+    );
+
     const productString = `${buildProductString(link, store)} :: IN STOCK`;
 
     if (color) {
@@ -182,7 +239,33 @@ export const Print = {
 
     return `✖ ${buildProductString(link, store)} :: NO RESPONSE`;
   },
-  outOfStock(link: Link, store: Store, color?: boolean): string {
+  outOfStock(
+    link: Link,
+    store: Store,
+    color?: boolean,
+    meta?: string | null
+  ): string {
+    const data: StockData = {
+      brand: link.brand,
+      series: link.series,
+      name: link.model,
+      store: store.name,
+      stock: 0,
+      price: link.price,
+      url: link.associateLink ? link.associateLink : link.url,
+      meta: meta,
+    };
+
+    axiosInstance.post(`${process.env.SSURL}/stock`, data).then(
+      () => {
+        console.log('Successfully posted to stock stalker server');
+      },
+      error => {
+        console.log('Failed to post to stock stalker server');
+        console.log(error);
+      }
+    );
+
     if (color) {
       return (
         '✖ ' +
