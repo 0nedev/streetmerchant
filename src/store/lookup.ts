@@ -237,9 +237,6 @@ async function processLink(
   let statusCode = 0;
   try {
     statusCode = await lookupIem(browser, store, page, link);
-    // Nuke cookies so every request starts from a clean slate
-    const client = await page.target().createCDPSession();
-    await client.send('Network.clearBrowserCookies');
   } catch (error: unknown) {
     if (store.currentProxyIndex !== undefined && store.proxyList) {
       const proxy = `${store.currentProxyIndex + 1}/${store.proxyList.length}`;
@@ -303,6 +300,14 @@ async function lookup(browser: Browser, store: Store) {
     await Promise.all(
       bufLinks.map((link: Link) => processLink(browser, store, link))
     );
+  }
+
+  if (store.clearCookies) {
+    const context = browser.defaultBrowserContext();
+    const page = await context.newPage();
+    const client = await page.target().createCDPSession();
+    await client.send('Network.clearBrowserCookies');
+    page.close();
   }
 }
 

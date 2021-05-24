@@ -1,6 +1,7 @@
 import {Store} from './store';
 
 export const BAndH: Store = {
+  clearCookies: true,
   backoffStatusCodes: [403, 429],
   currency: '$',
   labels: {

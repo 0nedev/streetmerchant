@@ -312,4 +312,5 @@ export type Store = {
   proxyList?: string[];
   currentProxyIndex?: number;
   captchaDeterrent?: CaptchaDeterrent;
+  clearCookies?: boolean;
 };
