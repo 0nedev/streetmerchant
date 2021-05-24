@@ -62,4 +62,5 @@ export const AmdCa: Store = {
     },
   ],
   name: 'amd-ca',
+  clearCookies: true,
 };
