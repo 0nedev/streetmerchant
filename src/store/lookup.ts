@@ -179,7 +179,9 @@ async function processLink(
   await page.setRequestInterception(true);
 
   page.setDefaultNavigationTimeout(config.page.timeout);
-  await page.setUserAgent(await getRandomUserAgent());
+  if (!store.useSameAgent) {
+    await page.setUserAgent(await getRandomUserAgent());
+  }
 
   let adBlockRequestHandler: any;
   let pageProxy;
@@ -292,6 +294,10 @@ async function lookup(browser: Browser, store: Store) {
         logger.error(error);
       }
     }
+  }
+
+  if (store.requiresLogin) {
+    await login(browser, store);
   }
 
   const envChunk = process.env.REQ_CHUNK;
@@ -627,4 +633,36 @@ export async function tryLookupAndLoop(browser: Browser, store: Store) {
   const sleepTime = getSleepTime(store);
   logger.silly(`[${store.name}] Lookup done, next one in ${sleepTime} ms`);
   setTimeout(tryLookupAndLoop, sleepTime, browser, store);
+}
+
+async function login(browser: Browser, store: Store) {
+  const context = browser.defaultBrowserContext();
+  const page = await context.newPage();
+  if (store.name === 'canadacomputers-bulk') {
+    if (!store.useSameAgent) {
+      await page.setUserAgent(await getRandomUserAgent());
+    }
+    await page.goto('https://www.canadacomputers.com/login.php', {
+      waitUntil: 'domcontentloaded',
+    });
+    const element = await page.$('#my-cc-account');
+    if (element) {
+      // We're good to go, account panel is visible
+      page.close();
+      return;
+    }
+    await page.type('input[name=lo-username]', 'maxunicorn');
+    await page.type('input[name=lo-password]', "->95)q`'p4K-tK5[");
+    await page.click('#btn-login');
+    await page.waitForNavigation({
+      waitUntil: 'domcontentloaded',
+      // 100 hours
+      timeout: 360000000,
+    });
+    try {
+      await page.waitForSelector('#my-cc-account', {timeout: 360000000});
+    } finally {
+      page.close();
+    }
+  }
 }

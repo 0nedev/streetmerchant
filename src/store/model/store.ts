@@ -313,4 +313,6 @@ export type Store = {
   currentProxyIndex?: number;
   captchaDeterrent?: CaptchaDeterrent;
   clearCookies?: boolean;
+  requiresLogin?: boolean;
+  useSameAgent?: boolean;
 };

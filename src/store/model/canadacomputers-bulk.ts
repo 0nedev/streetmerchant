@@ -105,5 +105,7 @@ export const CanadaComputersBulk: Store = {
   bulk: true,
   name: 'canadacomputers-bulk',
   waitUntil: 'domcontentloaded',
-  clearCookies: true,
+  //   requiresLogin: true,
+  disableAdBlocker: true,
+  useSameAgent: true,
 };
