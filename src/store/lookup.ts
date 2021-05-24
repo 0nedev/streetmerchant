@@ -237,6 +237,9 @@ async function processLink(
   let statusCode = 0;
   try {
     statusCode = await lookupIem(browser, store, page, link);
+    // Nuke cookies so every request starts from a clean slate
+    const client = await page.target().createCDPSession();
+    await client.send('Network.clearBrowserCookies');
   } catch (error: unknown) {
     if (store.currentProxyIndex !== undefined && store.proxyList) {
       const proxy = `${store.currentProxyIndex + 1}/${store.proxyList.length}`;
