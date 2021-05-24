@@ -196,6 +196,12 @@ export const StockTrackerCa: Store = {
       url: 'https://stocktrack.ca/bb/availability.php?sku=14967857',
     },
     {
+      brand: 'asus',
+      model: 'tuf oc',
+      series: 'rx6700xt',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15397411',
+    },
+    {
       brand: 'sony',
       model: 'ps5 console',
       series: 'sonyps5c',
