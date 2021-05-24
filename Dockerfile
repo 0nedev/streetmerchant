@@ -16,11 +16,7 @@ COPY test/ test/
 RUN npm run compile
 RUN npm prune --production
 
-<<<<<<< HEAD
 FROM node:16.1.0-alpine3.13
-=======
-FROM node:15.12.0-alpine3.13
->>>>>>> main
 
 RUN apk add --no-cache chromium
 
