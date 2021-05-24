@@ -47,6 +47,7 @@ export type Series =
   | '3080ti'
   | '3090'
   | 'darkhero'
+  | 'rx6700xt'
   | 'rx6800'
   | 'rx6700xt'
   | 'rx6800xt'
@@ -239,6 +240,7 @@ export type Link = {
   series: Series;
   screenshot?: string;
   url: string;
+  associateLink?: string;
 };
 
 export type CaptchaHandlerElements = {
@@ -250,11 +252,17 @@ export type CaptchaHandlerElements = {
 
 export type LabelQuery = Element[] | Element | string[];
 
+export type Meta = {
+  container?: string;
+  type?: 'innerHTML' | 'outerHTML' | 'textContent';
+};
+
 export type Labels = {
   bannedSeller?: LabelQuery;
   captcha?: LabelQuery;
   captchaHandler?: CaptchaHandlerElements;
   container?: string;
+  meta?: Meta;
   inStock?: LabelQuery;
   outOfStock?: LabelQuery;
   maxPrice?: Pricing;
@@ -287,6 +295,7 @@ export type Store = {
   };
   labels: Labels;
   name: string;
+  bulk?: boolean;
   currency: '£' | '$' | '€' | 'R$' | 'kr.' | '';
   setupAction?: (browser: Browser) => void;
   /**

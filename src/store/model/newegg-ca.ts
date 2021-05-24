@@ -1005,6 +1005,173 @@ export const NeweggCa: Store = {
       series: '3080ti',
       url: 'https://www.newegg.ca/asus-geforce-rtx-3080-ti-tuf-rtx3080ti-12g-gaming/p/N82E16814126510',
     },
+    {
+      brand: 'asus',
+      model: 'strix',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/asus-radeon-rx-6700-xt-rog-strix-rx6700xt-o12g-gaming/p/N82E16814126498',
+    },
+    {
+      brand: 'asus',
+      model: 'dual',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/asus-radeon-rx-6700-xt-dual-rx6700xt-12g/p/N82E16814126500',
+    },
+    {
+      brand: 'msi',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/msi-radeon-rx-6700-xt-rx-6700-xt-mech-2x-12g/p/N82E16814137641',
+    },
+    {
+      brand: 'msi',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url: 'https://www.newegg.ca/msi-rx6700xtmech-2x12goc/p/N82E16814137640',
+    },
+    {
+      brand: 'sapphire',
+      model: 'pulse',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/sapphire-radeon-rx-6700-xt-11306-02-20g/p/N82E16814202400',
+    },
+    {
+      brand: 'msi',
+      model: 'gaming x',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/msi-radeon-rx-6700-xt-rx-6700-xt-gaming-x-12g/p/N82E16814137642',
+    },
+    {
+      brand: 'sapphire',
+      model: 'nitro+',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/sapphire-radeon-rx-6700-xt-11306-01-20g/p/N82E16814202399',
+    },
+    {
+      brand: 'xfx',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/xfx-radeon-rx-6700-xt-rx-67xtytbdp/p/N82E16814150854',
+    },
+    {
+      brand: 'sapphire',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/sapphire-radeon-rx-6700-xt-21306-01-20g/p/N82E16814202398',
+    },
+    {
+      brand: 'asus',
+      model: 'tuf',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/asus-radeon-rx-6700-xt-tuf-rx6700xt-o12g-gaming/p/N82E16814126499',
+    },
+    {
+      brand: 'xfx',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/xfx-radeon-rx-6700-xt-rx-67xtyludp/p/N82E16814150851',
+    },
+    {
+      brand: 'xfx',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/xfx-radeon-rx-6700-xt-rx-67tmydfd8/p/N82E16814150850',
+    },
+    {
+      brand: 'powercolor',
+      model: 'red devil',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/powercolor-radeon-rx-6700-xt-axrx-6700xt-12gbd6-3dhe-oc/p/N82E16814131781',
+    },
+    {
+      brand: 'asrock',
+      model: 'phantom gaming',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/asrock-radeon-rx-6700-xt-rx6700xt-pgd-12go/p/N82E16814930054',
+    },
+    {
+      brand: 'asrock',
+      model: 'challenger pro',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/asrock-radeon-rx-6700-xt-rx6700xt-clp-12go/p/N82E16814930055',
+    },
+    {
+      brand: 'asrock',
+      model: 'challenger',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/asrock-radeon-rx-6700-xt-rx6700xt-cld-12g/p/N82E16814930056',
+    },
+    {
+      brand: 'xfx',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/xfx-radeon-rx-6700-xt-rx-67xtypudp/p/N82E16814150853',
+    },
+    {
+      brand: 'xfx',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/xfx-radeon-rx-6700-xt-rx-67xtyjfdv/p/N82E16814150852',
+    },
+    {
+      brand: 'asus',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/asus-radeon-rx-6700-xt-rx6700xt-12g/p/N82E16814126502',
+    },
+    {
+      brand: 'powercolor',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/powercolor-radeon-rx-6700-xt-axrx-6700xt-12gbd6-m3dh/p/N82E16814131780',
+    },
+    {
+      brand: 'gigabyte',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/gigabyte-radeon-rx-6700-xt-gv-r67xt-12gd-b/p/N82E16814932417',
+    },
+    {
+      brand: 'powercolor',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/powercolor-radeon-rx-6700-xt-axrx-6700xt-12gbd6-3dhl/p/N82E16814131782',
+    },
+    {
+      brand: 'gigabyte',
+      model: 'aorus',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/gigabyte-radeon-rx-6700-xt-gv-r67xtaorus-e-12gd/p/N82E16814932415',
+    },
+    {
+      brand: 'gigabyte',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.newegg.ca/gigabyte-radeon-rx-6700-xt-gv-r67xtgaming-oc-12gd/p/N82E16814932416',
+    },
   ],
   name: 'newegg-ca',
   realTimeInventoryLookup: async (itemNumber: string) => {

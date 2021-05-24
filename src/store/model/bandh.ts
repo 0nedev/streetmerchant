@@ -290,6 +290,48 @@ export const BAndH: Store = {
       series: 'sf',
       url: 'https://www.bhphotovideo.com/c/product/1560680-REG/corsair_cp_9020186_na_corsair_sf750_power_supply.html',
     },
+    {
+      brand: 'asus',
+      model: 'dual',
+      series: 'rx6700xt',
+      url:
+        'https://www.bhphotovideo.com/c/product/1629867-REG/asus_dual_rx6700xt_12g_dual_radeon_rx_6700.html',
+    },
+    {
+      brand: 'asus',
+      model: 'strix',
+      series: 'rx6700xt',
+      url:
+        'https://www.bhphotovideo.com/c/product/1629850-REG/asus_90yv0g81_m0aa00_republic_of_gamers_strix.html',
+    },
+    {
+      brand: 'msi',
+      model: 'gaming x',
+      series: 'rx6700xt',
+      url:
+        'https://www.bhphotovideo.com/c/product/1631271-REG/msi_r6700xtgx_radeon_rx_6700_xt.html',
+    },
+    {
+      brand: 'asus',
+      model: 'tuf',
+      series: 'rx6700xt',
+      url:
+        'https://www.bhphotovideo.com/c/product/1629866-REG/asus_90yv0g80_m0aa00_tuf_gaming_radeon_rx.html',
+    },
+    {
+      brand: 'xfx',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.bhphotovideo.com/c/product/1630553-REG/xfx_force_rx_67xtyludp_amd_radeon_rx_6700.html',
+    },
+    {
+      brand: 'xfx',
+      model: 'amd reference',
+      series: 'rx6700xt',
+      url:
+        'https://www.bhphotovideo.com/c/product/1630554-REG/xfx_force_rx_67xtytbdp_merc_319_amd_radeon.html',
+    },
   ],
   name: 'bandh',
 };

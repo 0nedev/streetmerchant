@@ -28,7 +28,14 @@ RUN addgroup -S appuser && adduser -S -g appuser appuser \
   && chown -R appuser:appuser /home/appuser \
   && chown -R appuser:appuser /app
 
-USER appuser
+RUN apk add --no-cache tmux
+RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
+RUN python3 -m ensurepip
+RUN pip3 install --no-cache --upgrade pip setuptools
+RUN pip3 install tmuxp
+ENV LANG=en_CA.UTF-8
+
+# USER appuser
 
 WORKDIR /app
 
@@ -37,5 +44,10 @@ COPY --from=builder /build/build/ build/
 COPY web/ web/
 COPY package.json package.json
 
-ENTRYPOINT ["npm", "run"]
-CMD ["start:production"]
+# These are conditional, we'll copy only if they exist, wildcard helps us do that
+COPY dotenv* /app/
+COPY streetmerchant.yaml* /app/
+COPY *.proxies /app/
+
+ENTRYPOINT ["/bin/sh", "-c", "tmuxp load streetmerchant.yaml"]
+# CMD "tmuxp load streetmerchant.yaml"

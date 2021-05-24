@@ -46,6 +46,7 @@ import {Bpctech} from './bpctech';
 import {BpmPower} from './bpmpower';
 import {BT} from './bt';
 import {CanadaComputers} from './canadacomputers';
+import {CanadaComputersBulk} from './canadacomputers-bulk';
 import {Caseking} from './caseking';
 import {Ccl} from './ccl';
 import {Centrecom} from './centrecom';
@@ -108,6 +109,7 @@ import {Mwave} from './mwave';
 import {NeoByte} from './neobyte';
 import {NetonnetNO} from './netonnet-no';
 import {Newegg} from './newegg';
+import {NewEggCaBulk} from './newegg-ca-bulk';
 import {NeweggCa} from './newegg-ca';
 import {NeweggSg} from './newegg-sg';
 import {NoelLeeming} from './noelleeming';
@@ -146,6 +148,7 @@ import {Siabyte} from './siabyte';
 import {SmythsToys} from './smythstoys';
 import {SmythsToysIE} from './smythstoys-ie';
 import {Spielegrotte} from './spielegrotte';
+import {StockTrackerCa} from './stocktracker-ca';
 import {Store} from './store';
 import {StormComputers} from './storm';
 import {Target} from './target';
@@ -215,6 +218,7 @@ export const storeList = new Map([
   [BpmPower.name, BpmPower],
   [BT.name, BT],
   [CanadaComputers.name, CanadaComputers],
+  [CanadaComputersBulk.name, CanadaComputersBulk],
   [Caseking.name, Caseking],
   [Ccl.name, Ccl],
   [Centrecom.name, Centrecom],
@@ -281,6 +285,7 @@ export const storeList = new Map([
   [NeoByte.name, NeoByte],
   [NetonnetNO.name, NetonnetNO],
   [Newegg.name, Newegg],
+  [NewEggCaBulk.name, NewEggCaBulk],
   [NeweggCa.name, NeweggCa],
   [NeweggSg.name, NeweggSg],
   [NoelLeeming.name, NoelLeeming],
@@ -319,6 +324,7 @@ export const storeList = new Map([
   [SmythsToys.name, SmythsToys],
   [SmythsToysIE.name, SmythsToysIE],
   [Spielegrotte.name, Spielegrotte],
+  [StockTrackerCa.name, StockTrackerCa],
   [StormComputers.name, StormComputers],
   [Target.name, Target],
   [TescoIE.name, TescoIE],
