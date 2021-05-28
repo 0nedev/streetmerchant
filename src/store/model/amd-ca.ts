@@ -22,10 +22,10 @@ export const AmdCa: Store = {
     {
       brand: 'amd',
       cartUrl:
-        'https://www.amd.com/en/direct-buy/5458373400/ca?add-to-cart=true',
+        'https://www.amd.com/en/direct-buy/5496921400/ca?add-to-cart=true',
       model: 'amd reference',
       series: 'rx6700xt',
-      url: 'https://www.amd.com/en/direct-buy/5458373400/ca',
+      url: 'https://www.amd.com/en/direct-buy/5496921400/ca',
     },
     {
       brand: 'amd',
