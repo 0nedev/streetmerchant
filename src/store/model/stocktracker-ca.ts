@@ -22,6 +22,12 @@ export const StockTrackerCa: Store = {
       url: 'https://stocktrack.ca/bb/availability.php?sku=15309504',
     },
     {
+      brand: 'zotac',
+      model: 'twin edge oc',
+      series: '3060',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15441686',
+    },
+    {
       brand: 'asus',
       model: 'strix oc',
       series: '3060',
@@ -59,9 +65,21 @@ export const StockTrackerCa: Store = {
     },
     {
       brand: 'msi',
+      model: 'x trio',
+      series: '3060',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15459509',
+    },
+    {
+      brand: 'msi',
       model: 'ventus 2x oc',
       series: '3060ti',
       url: 'https://stocktrack.ca/bb/availability.php?sku=15178453',
+    },
+    {
+      brand: 'msi',
+      model: 'x trio',
+      series: '3060ti',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15459508',
     },
     {
       brand: 'asus',
@@ -80,6 +98,12 @@ export const StockTrackerCa: Store = {
       model: 'ftw3 ultra',
       series: '3060ti',
       url: 'https://stocktrack.ca/bb/availability.php?sku=15229237',
+    },
+    {
+      brand: 'msi',
+      model: 'suprim x',
+      series: '3070',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15459506',
     },
     {
       brand: 'msi',
@@ -131,6 +155,30 @@ export const StockTrackerCa: Store = {
     },
     {
       brand: 'zotac',
+      model: 'amp holo',
+      series: '3070',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15268899',
+    },
+    {
+      brand: 'msi',
+      model: 'x trio',
+      series: '3070',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15459513',
+    },
+    {
+      brand: 'msi',
+      model: 'ventus 2x oc',
+      series: '3070',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15468905',
+    },
+    {
+      brand: 'nvidia',
+      model: 'founders edition',
+      series: '3080',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15463567',
+    },
+    {
+      brand: 'zotac',
       model: 'trinity',
       series: '3080',
       url: 'https://stocktrack.ca/bb/availability.php?sku=14953249',
@@ -146,6 +194,18 @@ export const StockTrackerCa: Store = {
       model: 'ventus 3x',
       series: '3080',
       url: 'https://stocktrack.ca/bb/availability.php?sku=14950588',
+    },
+    {
+      brand: 'msi',
+      model: 'x trio',
+      series: '3080',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15459505',
+    },
+    {
+      brand: 'msi',
+      model: 'suprim x',
+      series: '3080',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15459504',
     },
     {
       brand: 'evga',
@@ -194,6 +254,24 @@ export const StockTrackerCa: Store = {
       model: 'xc3 ultra',
       series: '3090',
       url: 'https://stocktrack.ca/bb/availability.php?sku=14967857',
+    },
+    {
+      brand: 'msi',
+      model: 'suprim x',
+      series: '3090',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15459502',
+    },
+    {
+      brand: 'msi',
+      model: 'x trio',
+      series: '3090',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15459503',
+    },
+    {
+      brand: 'nvidia',
+      model: 'founders edition',
+      series: '3090',
+      url: 'https://stocktrack.ca/bb/availability.php?sku=15463568',
     },
     {
       brand: 'asus',
