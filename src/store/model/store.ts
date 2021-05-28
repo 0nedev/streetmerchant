@@ -60,7 +60,8 @@ export type Series =
   | 'sonyps5de'
   | 'sf'
   | 'xboxsx'
-  | 'xboxss';
+  | 'xboxss'
+  | 'misc';
 
 export type Model =
   | 'test:model'

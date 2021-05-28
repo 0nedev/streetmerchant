@@ -72,7 +72,15 @@ export const NewEggCaBulk: Store = {
       brand: 'amd',
       model: '5600x',
       series: 'ryzen5600',
-      url: 'https://www.newegg.ca/p/pl?d=5600X&N=100006677%208000',
+      url: 'https://www.newegg.ca/p/pl?d=5600X&N=100006677%208000%204841',
+    },
+    // COMBO DEALS
+    {
+      brand: 'amd',
+      model: '5600x',
+      series: 'misc',
+      url:
+        'https://www.newegg.ca/p/pl?N=8000%204812%20100007708&PageSize=96&isdeptsrh=1',
     },
     {
       brand: 'amd',
