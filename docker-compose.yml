@@ -15,7 +15,7 @@ services:
     restart: on-failure
     networks:
       default:
-    entrypoint: ["/bin/sh", "-c", "STORES=canadacomputers-bulk:21000 SHOW_ONLY_SERIES=3060,3060ti,3070,3080,3090 npm run start:production"]
+    entrypoint: ["/bin/sh", "-c", "STORES=canadacomputers-bulk:21000 SHOW_ONLY_SERIES=3060,3060ti,3070,3080,3080ti,3090,rx6800xt npm run start:production"]
     
   newegg-ca-bulk:
     container_name: newegg-ca-bulk
