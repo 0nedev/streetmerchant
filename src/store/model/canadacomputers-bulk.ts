@@ -20,6 +20,13 @@ export const CanadaComputersBulk: Store = {
     {
       brand: 'nvidia',
       model: 'founders edition',
+      series: '3080ti',
+      url:
+        'https://www.canadacomputers.com/index.php?cPath=43_557_559&sf=:3_4&mfr=&pr=',
+    },
+    {
+      brand: 'nvidia',
+      model: 'founders edition',
       series: '3080',
       url:
         'https://www.canadacomputers.com/index.php?cPath=43_557&sf=:3_5&mfr=&pr=',

@@ -24,9 +24,16 @@ export const NewEggCaBulk: Store = {
     {
       brand: 'nvidia',
       model: 'founders edition',
+      series: '3080ti',
+      url:
+        'https://www.newegg.ca/p/pl?d=3080&N=100007708%208000%20601385735&isdeptsrh=1',
+    },
+    {
+      brand: 'nvidia',
+      model: 'founders edition',
       series: '3080',
       url:
-        'https://www.newegg.ca/p/pl?d=3080&N=100007708%20601357282%208000&isdeptsrh=1',
+        'https://www.newegg.ca/p/pl?d=3080&N=100007708%208000%20601357247&isdeptsrh=1',
     },
     {
       brand: 'nvidia',
