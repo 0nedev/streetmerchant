@@ -34,6 +34,13 @@ export const CanadaComputersBulk: Store = {
     {
       brand: 'nvidia',
       model: 'founders edition',
+      series: '3070ti',
+      url:
+        'https://www.canadacomputers.com/index.php?cPath=43_557&sf=:3_6&mfr=&pr=',
+    },
+    {
+      brand: 'nvidia',
+      model: 'founders edition',
       series: '3070',
       url:
         'https://www.canadacomputers.com/index.php?cPath=43_557&sf=:3_7&mfr=&pr=',
@@ -107,6 +114,13 @@ export const CanadaComputersBulk: Store = {
       series: 'rx6700xt',
       url:
         'https://www.canadacomputers.com/index.php?cPath=43_557&sf=:3_32&mfr=&pr=',
+    },
+    {
+      brand: 'amd',
+      model: 'amd reference',
+      series: 'misc',
+      url:
+        'https://www.canadacomputers.com/bundles.php?pr=&cat=Video+Cards&mfr=&loc=&minp=&maxp=&keywords=',
     },
   ],
   bulk: true,
