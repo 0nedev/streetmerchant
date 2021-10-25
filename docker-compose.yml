@@ -1,13 +1,13 @@
 version: '3.7'
 
 services:
-  stocktracker-ca:
-    container_name: stocktracker-ca
-    image: streetmerchant
-    restart: on-failure
-    networks:
-      default:
-    entrypoint: ["/bin/sh", "-c", "STORES=stocktracker-ca REQ_CHUNK=10 npm run start:production"]
+  # stocktracker-ca:
+  #   container_name: stocktracker-ca
+  #   image: streetmerchant
+  #   restart: on-failure
+  #   networks:
+  #     default:
+  #   entrypoint: ["/bin/sh", "-c", "STORES=stocktracker-ca REQ_CHUNK=10 npm run start:production"]
     
   canadacomputers-bulk:
     container_name: canadacomputers-bulk
@@ -15,7 +15,7 @@ services:
     restart: on-failure
     networks:
       default:
-    entrypoint: ["/bin/sh", "-c", "STORES=canadacomputers-bulk:21000 SHOW_ONLY_SERIES=misc,3060,3060ti,3070,3070ti,3080,3080ti,3090,rx6800xt npm run start:production"]
+    entrypoint: ["/bin/sh", "-c", "STORES=canadacomputers-bulk:21000 SHOW_ONLY_SERIES=3060,3060ti,3070,3070ti,3080,3080ti,3090,rx6700xt,rx6800,rx6800xt,rx6900xt npm run start:production"]
     
   newegg-ca-bulk:
     container_name: newegg-ca-bulk
@@ -31,7 +31,7 @@ services:
     restart: on-failure
     networks:
       default:
-    entrypoint: ["/bin/sh", "-c", "STORES=amazon-ca SHOW_ONLY_SERIES=3060,3060ti,3070,3080,3090,rx6700xt,rx6800,rx6800xt,rx6900xt,ryzen5950 npm run start:production"]
+    entrypoint: ["/bin/sh", "-c", "STORES=amazon-ca:10000 SHOW_ONLY_SERIES=3060,3060ti,3070,3080,3090,rx6700xt,rx6800,rx6800xt,rx6900xt,ryzen5950,ryzen5900,ryzen5800,ryzen5600 npm run start:production"]
     
   amd-ca:
     container_name: amd-ca
@@ -39,7 +39,7 @@ services:
     restart: on-failure
     networks:
       default:
-    entrypoint: ["/bin/sh", "-c", "STORES=amd-ca:21000 npm run start:production"]
+    entrypoint: ["/bin/sh", "-c", "STORES=amd-ca:21000 SHOW_ONLY_SERIES=3060,3060ti,3070,3080,3090,rx6700xt,rx6800,rx6800xt,rx6900xt npm run start:production"]
     
   walmart-ca:
     container_name: walmart-ca
@@ -49,10 +49,10 @@ services:
       default:
     entrypoint: ["/bin/sh", "-c", "STORES=walmart-ca:30000 npm run start:production"]
     
-  bandh:
-    container_name: bandh
-    image: streetmerchant
-    restart: on-failure
-    networks:
-      default:
-    entrypoint: ["/bin/sh", "-c", "STORES=bandh npm run start:production"]
+  # bandh:
+  #   container_name: bandh
+  #   image: streetmerchant
+  #   restart: on-failure
+  #   networks:
+  #     default:
+  #   entrypoint: ["/bin/sh", "-c", "STORES=bandh npm run start:production"]
